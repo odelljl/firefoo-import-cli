@@ -1,0 +1,8 @@
+# Typescript output for distribution
+/dist/
+
+# Node
+/node_modules/
+
+# Files produced by IntelliJ IDEs
+/.idea
