@@ -14,8 +14,11 @@
     "@tsconfig/node21": "^21.0.3",
     "@typescript-eslint/eslint-plugin": "7.17.0",
     "@typescript-eslint/parser": "7.17.0",
-    "eslint": "^9.8.0",
     "typescript": "^5.5.4",
     "typescript-eslint": "^7.17.0"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "figlet": "^1.7.0"
   }
 }

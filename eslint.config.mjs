@@ -1,10 +1,10 @@
-import pluginJs from '@eslint/js';
+import eslint from '@eslint/js';
 // noinspection SpellCheckingInspection
 import tseslint from 'typescript-eslint';
 
 // noinspection JSUnusedGlobalSymbols
 export default [
   { files: ['src/*.{js,mjs,cjs,ts}'] },
-  pluginJs.configs.recommended,
+  eslint.configs.recommended,
   ...tseslint.configs.recommended,
 ];
