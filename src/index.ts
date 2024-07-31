@@ -25,6 +25,10 @@ program
     '-p, --projectId <value>',
     'override firebase project id in import file',
   )
+  .option(
+    '-n, --topCollectionName <value>',
+    'override to level collection id in import file',
+  )
   .option('-t, --useTransaction', 'use a transaction', false)
   .option('-s, --silent', 'do not confirm before importing', false)
   .version('1.0.0') // -V by default, short circuits any further processing

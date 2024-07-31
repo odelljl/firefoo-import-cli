@@ -13,8 +13,10 @@
       "admin": true,
       "age": 45,
       "email": "john.doe@example.com",
-      "firstName": "John",
-      "lastName": "Doe",
+      "name": {
+        "firstName": "John",
+        "lastName": "Doe"
+      },
       "weight": 167,
       "__collections__": {}
     },
@@ -22,8 +24,10 @@
       "admin": false,
       "age": 41,
       "email": "jane.smith@example.com",
-      "firstName": "Jane",
-      "lastName": "Smith",
+      "name": {
+        "firstName": "Jane",
+        "lastName": "Smith"
+      },
       "weight": 120,
       "__collections__": {}
     },
@@ -31,8 +35,10 @@
       "admin": false,
       "age": 16,
       "email": "sandy.beach@example.com",
-      "firstName": "Sandy",
-      "lastName": "Beach",
+      "name": {
+        "firstName": "Sandy",
+        "lastName": "Beach"
+      },
       "weight": 99,
       "__collections__": {}
     }
