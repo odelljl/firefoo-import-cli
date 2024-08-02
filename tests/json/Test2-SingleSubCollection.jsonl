@@ -1,0 +1,8 @@
+{"__path__":"Test2/doc1","__id__":"doc1","admin":true,"age":45,"email":"john.doe@example.com","name":{"firstName":"John","lastName":"Doe"},"weight":167}
+{"__path__":"Test2/doc2","__id__":"doc2","admin":false,"age":41,"email":"jane.smith@example.com","name":{"firstName":"Jane","lastName":"Smith"},"weight":120}
+{"__path__":"Test2/doc3","__id__":"doc3","admin":false,"age":16,"email":"sandy.beach@example.com","name":{"firstName":"Sandy","lastName":"Beach"},"weight":99}
+{"__path__":"Test2/doc2/Addresses/doc2_address1","__id__":"doc2_address1","addressId":"doc2_address1","addressLine1":"100 North Main","city":"New York","country":"USA","postalCode":"64780","state":"NY"}
+{"__path__":"Test2/doc2/Addresses/doc2_address2","__id__":"doc2_address2","addressId":"doc2_address2","addressLine1":"200 East St","city":"New York","country":"USA","postalCode":"64780","state":"CA"}
+{"__path__":"Test2/doc2/Addresses/doc2_address3","__id__":"doc2_address3","addressId":"doc3_address3","addressLine1":"300 North St","city":"Topeka","country":"USA","postalCode":"13780","state":"KA"}
+{"__path__":"Test2/doc1/Addresses/doc1_address1","__id__":"doc1_address1","addressId":"doc1_address1","addressLine1":"100 North Main","city":"New York","country":"USA","postalCode":"64780","state":"NY"}
+{"__path__":"Test2/doc1/Addresses/doc1_address2","__id__":"doc1_address2","addressId":"doc1_address2","addressLine1":"200 East St","city":"New York","country":"USA","postalCode":"64780","state":"CA"}

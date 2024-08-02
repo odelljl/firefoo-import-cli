@@ -4,8 +4,9 @@ import { Command } from 'commander';
 import figlet from 'figlet';
 import admin from 'firebase-admin';
 import * as process from 'node:process';
-import { FileEnumerator } from './app/useCases/FileEnumerator';
-import { Importer } from './app/useCases/Importer';
+// import { FileEnumerator } from './app/useCases/FileEnumerator';
+// import { Importer } from './app/useCases/Importer';
+import { ImportJsonLFormat } from './app/useCases/ImportJsonLFormat';
 import { Logger } from './app/useCases/Logger';
 
 // parse program options
@@ -15,7 +16,7 @@ program
   .description(
     'CLI for importing files into FireBase as exported from the FireFoo utility',
   )
-  .requiredOption('-i, --inputFile <filePath>', 'path to the input file')
+  .requiredOption('-i, --inputFile <filePath>', 'path to the JSONL input file')
   .requiredOption('-u, --databaseUrl <url>', 'firestore database url')
   .requiredOption(
     '-c, --credentialFilePath <filePath>',
@@ -44,47 +45,33 @@ if (!process.argv.slice(2).length) {
   process.exit(0);
 }
 
-const inputFilePath = options.inputFile;
-
-//
-//
-// if (inputFilePath) {
-//   // if (options.verbose) {
-//   //   console.log('Verbose output enabled');
-//   // }
-//
-//   // check for input and execute
-//   if (!fs.existsSync(inputFilePath)) {
-//     Logger.logError(`File ${inputFilePath} does not exist`);
-//     Logger.logImportFailed();
-//     process.exit(1);
-//   }
-
 // todo: validate and move
+const inputFilePath = options.inputFile;
 const databaseUrl = options.databaseUrl;
 const projectId = options.projectId;
 const credentialFilePath = options.credentialFilePath;
+const isVerbose = options.verbose;
 
+Logger.setVerbose(isVerbose);
 initFirebase(credentialFilePath, databaseUrl, projectId);
 
 // start import
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-importFile()
+importJsonLFile()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .then((_) => Logger.logImportCompleted())
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .catch((_) => {
+  .catch((error) => {
+    Logger.logError(error);
     Logger.logImportFailed();
     process.exit(1);
   });
 
 // FUNCTIONS
 
-async function importFile() {
-  const json = await FileEnumerator.enumerateFile(inputFilePath);
-
-  const importer = new Importer();
-  await importer.import(json);
+async function importJsonLFile() {
+  const importer = new ImportJsonLFormat();
+  await importer.import(inputFilePath);
 }
 
 function initFirebase(
@@ -104,6 +91,6 @@ function initFirebase(
     });
   } catch (e) {
     const error = e as Error;
-    Logger.logError(error.message);
+    Logger.logError(error);
   } // Only initialize firebase once
 }

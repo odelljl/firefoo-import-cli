@@ -28,6 +28,6 @@
     "commander": "^12.1.0",
     "figlet": "^1.7.0",
     "firebase-admin": "12.1.0",
-    "traverse-json": "^0.5.1"
+    "traverse": "^0.6.9"
   }
 }
