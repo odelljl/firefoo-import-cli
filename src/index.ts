@@ -13,38 +13,36 @@ displayProgramHeader();
 const program = new Command();
 const options = buildCommandLineOptions();
 
-// show help if no options presented
+// show help if no options entered on command line
 if (!process.argv.slice(2).length) {
   program.outputHelp();
   process.exit(0);
 }
 
-// todo: validate and move
-const inputFilePath = options.inputFile;
+// todo: validate these three values
 const databaseUrl = options.databaseUrl;
 const projectId = options.projectId;
 const credentialFilePath = options.credentialFilePath;
+
+const inputFilePath = options.inputFile;
 const isVerbose = !options.silent;
 
 Logger.setVerbose(isVerbose);
 
 initFirebase(credentialFilePath, databaseUrl, projectId);
 
-// start import
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// start import use case
 importJsonLFile()
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .then((_) => {
+  .then(() => {
     Logger.logImportCompleted();
   })
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .catch((error) => {
     Logger.logError(error);
     Logger.logImportFailed();
     process.exit(1);
   });
 
-// FUNCTIONS
+// local functions
 
 function displayProgramHeader() {
   console.log(figlet.textSync('FireFoo Import CLI'));
@@ -77,11 +75,6 @@ function buildCommandLineOptions() {
   return program.opts();
 }
 
-async function importJsonLFile() {
-  const importer = new ImportJsonLFormat();
-  await importer.import(inputFilePath);
-}
-
 function initFirebase(
   credentialFilePath: string,
   databaseUrl: string,
@@ -101,4 +94,9 @@ function initFirebase(
     const error = e as Error;
     Logger.logError(error);
   } // Only initialize firebase once
+}
+
+async function importJsonLFile() {
+  const importer = new ImportJsonLFormat();
+  await importer.import(inputFilePath);
 }
