@@ -63,9 +63,9 @@ export class ImportJsonLFormat {
         const result = await db.doc(collectionPath).set(docObject);
 
         if (result) {
-          Logger.logInfo(`Wrote: ${collectionPath}/${docId}`);
+          Logger.logInfo(`Wrote document at path: ${collectionPath}`);
         } else {
-          Logger.logInfo(`Fail: ${collectionPath}/${docId}`);
+          Logger.logInfo(`Failed to write document at path: ${collectionPath}`);
         }
       }
     });

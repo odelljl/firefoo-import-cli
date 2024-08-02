@@ -2,7 +2,7 @@ export abstract class Logger {
   private static _isVerbose = false;
 
   public static logInfo(message: string) {
-    if (this._isVerbose) console.log('\x1b[33m', `\t${message}`);
+    if (this._isVerbose) console.log('\x1b[33m', `${message}`);
   }
 
   public static logError(err: Error) {

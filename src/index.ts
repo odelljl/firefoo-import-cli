@@ -20,13 +20,9 @@ program
     '-c, --credentialFilePath <filePath>',
     'path to the credentials file',
   )
-  .option(
+  .requiredOption(
     '-p, --projectId <value>',
-    'override firebase project id in import file',
-  )
-  .option(
-    '-n, --topCollectionName <value>',
-    'override to level collection id in import file',
+    'provide firebase project id in import file',
   )
   .option('-t, --useTransaction', 'use a transaction', false)
   .option('-s, --silent', 'do not confirm before importing', false)
@@ -48,7 +44,7 @@ const inputFilePath = options.inputFile;
 const databaseUrl = options.databaseUrl;
 const projectId = options.projectId;
 const credentialFilePath = options.credentialFilePath;
-const isVerbose = options.verbose;
+const isVerbose = !options.silent;
 
 Logger.setVerbose(isVerbose);
 initFirebase(credentialFilePath, databaseUrl, projectId);
@@ -57,7 +53,9 @@ initFirebase(credentialFilePath, databaseUrl, projectId);
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 importJsonLFile()
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  .then((_) => Logger.logImportCompleted())
+  .then((_) => {
+    Logger.logImportCompleted();
+  })
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   .catch((error) => {
     Logger.logError(error);
