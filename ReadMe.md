@@ -8,9 +8,15 @@ This utility imports data exported in JSONL format. Why?
 
 - There is no limit to the number of documents that can be imported. JSON imports
   would likely require the entire file to be loaded in memory.
-- They are easier to deal with, as FireFoo has
+- They are easier to deal with, as FireFoo has essentially flattened the object
+- tree ahead of time.
 
-Notes
+## Limitations and Future Feature Possibilities
 
-- Review documents with no data, just sub-collections, to see how they behave.
-- Document [Data Types](https://www.firefoo.app/docs/firestore-export-import/collection-documents-export-json#data-types) and test all of them.
+- Currently, supports `__time__` datatype. There are others TBD as needed.
+  [Data Types](https://www.firefoo.app/docs/firestore-export-import/collection-documents-export-json#data-types) and test all of them.
+- Batch/transaction support is not yet implemented.
+
+## Helpful Links
+
+- [Building a TypeScript CLI with Node.js and Commander](https://blog.logrocket.com/building-typescript-cli-node-js-commander)
