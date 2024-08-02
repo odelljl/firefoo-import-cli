@@ -7,31 +7,11 @@ import * as process from 'node:process';
 import { ImportJsonLFormat } from './app/useCases/ImportJsonLFormat';
 import { Logger } from './app/useCases/Logger';
 
+displayProgramHeader();
+
 // define program options
 const program = new Command();
-
-program
-  .description(
-    'CLI for importing files into FireBase as exported from the FireFoo utility',
-  )
-  .requiredOption('-i, --inputFile <filePath>', 'path to the JSONL input file')
-  .requiredOption('-u, --databaseUrl <url>', 'firestore database url')
-  .requiredOption(
-    '-c, --credentialFilePath <filePath>',
-    'path to the credentials file',
-  )
-  .requiredOption(
-    '-p, --projectId <value>',
-    'provide firebase project id in import file',
-  )
-  .option('-t, --useTransaction', 'use a transaction', false)
-  .option('-s, --silent', 'do not confirm before importing', false)
-  .version('1.0.0') // -V by default, short circuits any further processing
-  .parse(process.argv);
-
-const options = program.opts();
-
-console.log(figlet.textSync('FireFoo Import CLI'));
+const options = buildCommandLineOptions();
 
 // show help if no options presented
 if (!process.argv.slice(2).length) {
@@ -47,6 +27,7 @@ const credentialFilePath = options.credentialFilePath;
 const isVerbose = !options.silent;
 
 Logger.setVerbose(isVerbose);
+
 initFirebase(credentialFilePath, databaseUrl, projectId);
 
 // start import
@@ -64,6 +45,37 @@ importJsonLFile()
   });
 
 // FUNCTIONS
+
+function displayProgramHeader() {
+  console.log(figlet.textSync('FireFoo Import CLI'));
+}
+
+function buildCommandLineOptions() {
+  program
+    .description(
+      'CLI for importing files into FireBase as exported from the FireFoo utility',
+    )
+    .requiredOption(
+      '-i, --inputFile <filePath>',
+      'path to the JSONL input file',
+    )
+    .requiredOption('-u, --databaseUrl <url>', 'firestore database url')
+    .requiredOption(
+      '-c, --credentialFilePath <filePath>',
+      'path to the credentials file',
+    )
+    .requiredOption(
+      '-p, --projectId <value>',
+      'provide firebase project id in import file',
+    )
+    .option('-t, --useTransaction', 'use a transaction', false)
+    .option('-s, --silent', 'do not confirm before importing', false)
+    //todo: get version from external source
+    .version('1.0.0') // -V by default, short circuits any further processing
+    .parse(process.argv);
+
+  return program.opts();
+}
 
 async function importJsonLFile() {
   const importer = new ImportJsonLFormat();
