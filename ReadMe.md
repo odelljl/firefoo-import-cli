@@ -1,6 +1,6 @@
 # FireFoo CLI Import
 
-This utility imports data exported from FireFoo in it's JSONL format.
+This utility imports data exported from the FireFoo desktop tool in its JSONL format.
 
 ## Newline-Separated JSONL File Imports
 
