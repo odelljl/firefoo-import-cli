@@ -26,4 +26,4 @@ This utility imports data exported in JSONL format. Why?
 - [Export JSON from Firebase Firestore (FireFoo)](https://www.firefoo.app/docs/firestore-export-import/collection-documents-export-json#data-types)
 - [Commander (npm)](https://www.npmjs.com/package/commander)
 - [travers (npm)](https://www.npmjs.com/package/traverse)
-- [Advanced:Handle the sign-in flow manually (Firebase Docs)](https://firebase.google.com/docs/auth/web/google-signin#expandable-2)
+- [Advanced: Authenticate with Firebase in Node.js (Firebase Docs)](https://firebase.google.com/docs/auth/web/google-signin#expandable-3)
