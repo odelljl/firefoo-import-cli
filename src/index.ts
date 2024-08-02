@@ -4,12 +4,10 @@ import { Command } from 'commander';
 import figlet from 'figlet';
 import admin from 'firebase-admin';
 import * as process from 'node:process';
-// import { FileEnumerator } from './app/useCases/FileEnumerator';
-// import { Importer } from './app/useCases/Importer';
 import { ImportJsonLFormat } from './app/useCases/ImportJsonLFormat';
 import { Logger } from './app/useCases/Logger';
 
-// parse program options
+// define program options
 const program = new Command();
 
 program
