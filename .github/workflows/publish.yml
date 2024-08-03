@@ -13,7 +13,9 @@ jobs:
         with:
           node-version: 21
           registry-url: https://registry.npmjs.org
+      - name: build
+        run: npm run build
       - name: publish
-        run: npm publish --access public
+        run: cd dist && npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMAUTHTOKEN}}
