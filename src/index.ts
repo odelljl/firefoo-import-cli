@@ -49,7 +49,10 @@ importJsonLFile()
 // local functions
 
 function displayProgramHeader() {
+  const version = process.env.npm_package_version as string;
+
   console.log(figlet.textSync('FireFoo Import CLI'));
+  console.log(`V ${version}`);
 }
 
 function buildCommandLineOptions(programName: string) {
@@ -70,7 +73,7 @@ function buildCommandLineOptions(programName: string) {
     )
     .option(
       '-e, --useEmulator <boolean>',
-      'indicate whether data is loaded to local emulator.',
+      'indicate whether data is loaded to local emulator',
       true,
     )
     .option(
@@ -78,9 +81,7 @@ function buildCommandLineOptions(programName: string) {
       'database url',
       'http://127.0.0.1:4000/firestore/data',
     )
-    .option('-s, --silent', 'optional flag to mute detailed logging', false)
-    //todo: get version from external source
-    .version('0.0.1', '-v, --version', 'output the cli version and exit');
+    .option('-s, --silent', 'optional flag to mute detailed logging', false);
 
   return program.opts();
 }
