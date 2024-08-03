@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "firefoocli": "./dist/index.js"
+    "firefoocli": "dist/index.js"
   },
   "scripts": {
     "build": "npx tsc",
@@ -18,7 +18,10 @@
   ],
   "author": "Jeff Odell",
   "license": "ISC",
-  "repository": "https://github.com/odelljl/firefoo-import-cli.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/odelljl/firefoo-import-cli.git"
+  },
   "homepage": "https://github.com/odelljl/firefoo-import-cli.git#readme",
   "devDependencies": {
     "@eslint/js": "^9.8.0",
