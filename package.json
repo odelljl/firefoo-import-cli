@@ -22,6 +22,12 @@
     "type": "git",
     "url": "git+https://github.com/odelljl/firefoo-import-cli.git"
   },
+  "files": [
+    "dist",
+    "ReadMe.md",
+    "LICENSE"
+
+  ],
   "homepage": "https://github.com/odelljl/firefoo-import-cli.git#readme",
   "devDependencies": {
     "@eslint/js": "^9.8.0",
