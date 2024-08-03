@@ -61,11 +61,11 @@ function buildCommandLineOptions(programName: string) {
     )
     .helpOption('-h, --help', 'display help for the cli and exit')
     .requiredOption(
-      '-i, --inputFile <filePath>',
+      '-i, --inputFile <inputFilePath>',
       'required path to the JSONL input file',
     )
     .requiredOption(
-      '-c, --credentialFilePath <filePath>',
+      '-c, --credentialFilePath <credential1sfilePath>',
       'required path to the credentials file',
     )
     .option(
@@ -75,7 +75,7 @@ function buildCommandLineOptions(programName: string) {
     )
     .option(
       '-u, --databaseUrl <url>',
-      'database urlq',
+      'database url',
       'http://127.0.0.1:4000/firestore/data',
     )
     .option('-s, --silent', 'optional flag to mute detailed logging', false)

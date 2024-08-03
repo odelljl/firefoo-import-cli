@@ -1,10 +1,10 @@
 {
-  "name": "firefoocli",
+  "name": "@odelljl/firefoocli",
   "version": "0.0.1",
   "description": "",
   "main": "dist/index.js",
   "bin": {
-    "firefoocli": "dist/index.js"
+    "firefoocli": "./dist/index.js"
   },
   "scripts": {
     "build": "npx tsc",
