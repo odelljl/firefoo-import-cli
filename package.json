@@ -1,6 +1,6 @@
 {
   "name": "@odelljl/firefoocli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -23,7 +23,7 @@
     "url": "git+https://github.com/odelljl/firefoo-import-cli.git"
   },
   "files": [
-    "dist",
+    "dist/**/*.js",
     "ReadMe.md",
     "LICENSE"
 
