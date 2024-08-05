@@ -31,3 +31,6 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPMAUTHTOKEN}}
+
+      - name: push version update
+        run: git push
