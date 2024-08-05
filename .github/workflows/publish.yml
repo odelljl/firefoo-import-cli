@@ -8,17 +8,22 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v4
+
       - name: node
         uses: actions/setup-node@v4
         with:
           node-version: 21
           registry-url: https://registry.npmjs.org
+
       - name: install packages
         run: npm install
+
       - name: build
         run: npm run build
-      - name: Update patch version
+
+      - name: Update patch version -f
         run: npm version patch
+
       - name: publish
         run: npm publish --access public
         env:
