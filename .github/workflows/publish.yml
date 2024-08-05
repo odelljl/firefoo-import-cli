@@ -21,11 +21,11 @@ jobs:
       - name: build
         run: npm run build
 
-      - name: git status
-        run: git status
+      - name: set git user
+        uses: git-actions/set-user@v1
 
       - name: Update patch version
-        run: npm version patch -m "Upgrade to %s for npm" -f
+        run: npm version patch -m "Upgrade to %s for npm"
 
       - name: publish
         run: npm publish --access public
