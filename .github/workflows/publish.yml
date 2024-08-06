@@ -1,5 +1,8 @@
 name: 'publish package to npm'
 
+# Deploys next patch version from the HEAD of the main branch.
+# Manually update package.json for major/minor version changes when required.
+
 on: workflow_dispatch
 
 jobs:
@@ -27,7 +30,7 @@ jobs:
         uses: git-actions/set-user@v1
 
       - name: Update patch version
-        run: npm version patch -m "Upgrade to %s for npm"
+        run: npm version patch -m "Deploy version %s to npm"
 
       - name: publish
         run: npm publish --access public

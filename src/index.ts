@@ -4,6 +4,7 @@ import { Command } from 'commander';
 import figlet from 'figlet';
 import admin from 'firebase-admin';
 import * as process from 'node:process';
+import { FileUtils } from './app/useCases/FileUtils';
 import { ImportJsonLFormat } from './app/useCases/ImportJsonLFormat';
 import { Logger } from './app/useCases/Logger';
 
@@ -25,9 +26,19 @@ program.parse(process.argv);
 const inputFilePath = options.inputFile;
 
 // todo: validate these three values
-const credentialFilePath = options.credentialFilePath;
+
 const useEmulator = options.useEmulator;
 const databaseUrl = options.databaseUrl;
+const credentialFilePath = options.credentialFilePath;
+
+try {
+  FileUtils.checkFile(credentialFilePath);
+} catch (e) {
+  const error = e as Error;
+  Logger.logErrorMessage(error.message);
+  Logger.logImportFailed();
+  process.exit(1);
+}
 
 const isVerbose = !options.silent;
 
@@ -49,10 +60,7 @@ importJsonLFile()
 // local functions
 
 function displayProgramHeader() {
-  const version = process.env.npm_package_version as string;
-
   console.log(figlet.textSync('FireFoo Import CLI'));
-  console.log(`V ${version}`);
 }
 
 function buildCommandLineOptions(programName: string) {

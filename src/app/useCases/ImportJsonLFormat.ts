@@ -1,18 +1,27 @@
+import * as admin from 'firebase-admin';
 import { firestore } from 'firebase-admin';
 import * as fs from 'fs';
-import * as path from 'path';
+import process from 'node:process';
 import * as readline from 'readline';
-import * as admin from 'firebase-admin';
 import traverse from 'traverse';
+import { FileUtils } from './FileUtils';
 import { Logger } from './Logger';
 import Timestamp = firestore.Timestamp;
 
 export class ImportJsonLFormat {
   private readonly _idKey = '__id__';
   private readonly _pathKey = '__path__';
+  private readonly _exportPathKey = '__exportPath__';
 
   public async import(filePath: string) {
-    this.checkFile(filePath);
+    try {
+      FileUtils.checkFile(filePath);
+    } catch (e) {
+      const error = e as Error;
+      Logger.logErrorMessage(error.message);
+      Logger.logImportFailed();
+      process.exit(1);
+    }
 
     const db = admin.firestore();
 
@@ -30,6 +39,7 @@ export class ImportJsonLFormat {
       // get the path and docId
       let docId;
       let collectionPath;
+      let exportPath;
       for (const key in jsonObject) {
         switch (key) {
           case this._pathKey:
@@ -39,6 +49,13 @@ export class ImportJsonLFormat {
           case this._idKey:
             docId = jsonObject[key];
             delete jsonObject[key];
+            break;
+          case this._exportPathKey:
+            exportPath = jsonObject[key];
+            delete jsonObject[key];
+            if (exportPath) {
+              throw Error('exportPath not yet supported');
+            }
             break;
           default:
             break;
@@ -69,21 +86,5 @@ export class ImportJsonLFormat {
         }
       }
     });
-  }
-
-  private checkFile(filePath: string) {
-    if (!fs.existsSync(filePath)) {
-      throw new Error('File does not exist');
-    }
-
-    const fileStats = fs.statSync(filePath);
-    if (fileStats.size === 0) {
-      throw new Error('File is empty');
-    }
-
-    const ext = path.extname(filePath);
-    if (ext.toLowerCase() !== '.jsonl') {
-      throw new Error('File extension is not .jsonl');
-    }
   }
 }
