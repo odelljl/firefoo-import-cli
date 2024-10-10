@@ -1,0 +1,102 @@
+{
+  "meta": {
+    "format": "JSON",
+    "version": "1.1.0",
+    "projectId": "firecast-1c1ee",
+    "resourcePath": ["Test3"],
+    "recursive": false,
+    "creationTime": 1728569186,
+    "app": "firefoo"
+  },
+  "data": {
+    "doc2": {
+      "admin": false,
+      "age": 41,
+      "email": "jane.smith@example.com",
+      "name": { "firstName": "Jane", "lastName": "Smith" },
+      "weight": 120,
+      "__collections__": {
+        "Addresses": {
+          "doc2_address1": {
+            "addressId": "doc2_address1",
+            "addressLine1": "100 North Main",
+            "city": "New York",
+            "country": "USA",
+            "postalCode": "64780",
+            "state": "NY",
+            "__collections__": {}
+          },
+          "doc2_address2": {
+            "addressId": "doc2_address2",
+            "addressLine1": "200 East St",
+            "city": "New York",
+            "country": "USA",
+            "postalCode": "64780",
+            "state": "CA",
+            "__collections__": {}
+          },
+          "doc2_address3": {
+            "addressId": "doc3_address3",
+            "addressLine1": "300 North St",
+            "city": "Topeka",
+            "country": "USA",
+            "postalCode": "13780",
+            "state": "KA",
+            "__collections__": {}
+          }
+        }
+      }
+    },
+    "doc1": {
+      "admin": true,
+      "age": 45,
+      "email": "john.doe@example.com",
+      "name": { "firstName": "John", "lastName": "Doe" },
+      "weight": 167,
+      "__collections__": {
+        "Addresses": {
+          "doc1_address1": {
+            "addressId": "doc1_address1",
+            "addressLine1": "100 North Main",
+            "city": "New York",
+            "country": "USA",
+            "postalCode": "64780",
+            "state": "NY",
+            "__collections__": {}
+          },
+          "doc1_address2": {
+            "addressId": "doc1_address2",
+            "addressLine1": "200 East St",
+            "city": "New York",
+            "country": "USA",
+            "postalCode": "64780",
+            "state": "CA",
+            "__collections__": {}
+          }
+        },
+        "Phones": {
+          "doc1_phone1": {
+            "home": "123-45-6789",
+            "phoneId": "doc1_phone1",
+            "work": "987-65-4321",
+            "__collections__": {}
+          },
+          "doc1_phone2": {
+            "home": "091-00-9876",
+            "phoneId": "doc1_phone2",
+            "work": "089-378-1928",
+            "__collections__": {}
+          }
+        }
+      }
+    },
+    "doc3": {
+      "admin": false,
+      "age": 16,
+      "email": "sandy.beach@example.com",
+      "name": { "firstName": "Sandy", "lastName": "Beach" },
+      "weight": 99,
+      "__collections__": {}
+    }
+  }
+}

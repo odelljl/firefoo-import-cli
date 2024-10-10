@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "format": "JSON",
+    "version": "1.1.0",
+    "projectId": "empara-health-dev",
+    "resourcePath": ["Test1"],
+    "recursive": false,
+    "creationTime": 1728504417,
+    "app": "firefoo"
+  },
+  "data": {
+    "doc1": {
+      "admin": true,
+      "age": 45,
+      "email": "john.doe@example.com",
+      "name": { "firstName": "John", "lastName": "Doe" },
+      "weight": 167,
+      "__collections__": {}
+    },
+    "doc2": {
+      "admin": false,
+      "age": 41,
+      "email": "jane.smith@example.com",
+      "name": { "firstName": "Jane", "lastName": "Smith" },
+      "weight": 120,
+      "__collections__": {}
+    },
+    "doc3": {
+      "admin": false,
+      "age": 16,
+      "email": "sandy.beach@example.com",
+      "name": { "firstName": "Sandy", "lastName": "Beach" },
+      "weight": 99,
+      "__collections__": {}
+    }
+  }
+}
