@@ -3,7 +3,7 @@
 import { Command } from 'commander';
 import figlet from 'figlet';
 import admin from 'firebase-admin';
-import * as process from 'node:process';
+import { applicationDefault, initializeApp } from 'firebase-admin/app';
 import { FileUtils } from './app/useCases/FileUtils';
 import { ImportJsonLFormat } from './app/useCases/ImportJsonLFormat';
 import { Logger } from './app/useCases/Logger';
@@ -31,20 +31,21 @@ const useEmulator = options.useEmulator;
 const databaseUrl = options.databaseUrl;
 const credentialFilePath = options.credentialFilePath;
 
-try {
-  FileUtils.checkFile(credentialFilePath);
-} catch (e) {
-  const error = e as Error;
-  Logger.logErrorMessage(error.message);
-  Logger.logImportFailed();
-  process.exit(1);
+if (credentialFilePath) {
+  try {
+    FileUtils.checkFile(credentialFilePath);
+  } catch (e) {
+    const error = e as Error;
+    Logger.logErrorMessage(error.message);
+    Logger.logImportFailed();
+    process.exit(1);
+  }
 }
 
-const isVerbose = !options.silent;
-
-Logger.setVerbose(isVerbose);
-
 initFirebase(credentialFilePath, databaseUrl, useEmulator);
+
+const isVerbose = !options.silent;
+Logger.setVerbose(isVerbose);
 
 // start import use case
 importJsonLFile()
@@ -104,10 +105,17 @@ function initFirebase(
   }
 
   try {
-    admin.initializeApp({
-      credential: admin.credential.cert(credentialFilePath),
-      databaseURL: databaseUrl,
-    });
+    if (credentialFilePath) {
+      initializeApp({
+        credential: admin.credential.cert(credentialFilePath),
+        databaseURL: databaseUrl,
+      });
+    } else {
+      initializeApp({
+        credential: applicationDefault(),
+        databaseURL: databaseUrl,
+      });
+    }
   } catch (e) {
     const error = e as Error;
     Logger.logError(error);

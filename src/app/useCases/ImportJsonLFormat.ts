@@ -65,8 +65,8 @@ export class ImportJsonLFormat {
         );
       } else {
         const docObject = traverse(jsonObject).map(function (value) {
-          // peek ahead to see if there is a  special field.
-          // replace with the appropriate value for import
+          // peek ahead to see if there is a special field.
+          // replace with the appropriate value for import.
           if (value !== null && value.hasOwnProperty('__time__')) {
             const dateTime = new Date(Date.parse(value.__time__));
             const fireStoreTimestamp = Timestamp.fromDate(dateTime);
