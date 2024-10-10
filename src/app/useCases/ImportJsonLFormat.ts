@@ -4,15 +4,12 @@ import * as fs from 'fs';
 import process from 'node:process';
 import * as readline from 'readline';
 import traverse from 'traverse';
+import { Constants } from './Constants';
 import { FileUtils } from './FileUtils';
 import { Logger } from './Logger';
 import Timestamp = firestore.Timestamp;
 
 export class ImportJsonLFormat {
-  private readonly _idKey = '__id__';
-  private readonly _pathKey = '__path__';
-  private readonly _exportPathKey = '__exportPath__';
-
   public async import(filePath: string) {
     try {
       FileUtils.checkFile(filePath);
@@ -42,15 +39,15 @@ export class ImportJsonLFormat {
       let exportPath;
       for (const key in jsonObject) {
         switch (key) {
-          case this._pathKey:
+          case Constants.DOC_PATH_KEY:
             collectionPath = jsonObject[key];
             delete jsonObject[key];
             break;
-          case this._idKey:
+          case Constants.DOC_ID_KEY:
             docId = jsonObject[key];
             delete jsonObject[key];
             break;
-          case this._exportPathKey:
+          case Constants.EXPORT_PATH_KEY:
             exportPath = jsonObject[key];
             delete jsonObject[key];
             if (exportPath) {
