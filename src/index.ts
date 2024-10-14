@@ -25,10 +25,11 @@ program.parse(process.argv);
 
 const inputFilePath = options.inputFile;
 
-// todo: validate these three values
-
+// todo: validate these two values
 const useEmulator = options.useEmulator;
 const databaseUrl = options.databaseUrl;
+
+// use specific credentials if supplied
 const credentialFilePath = options.credentialFilePath;
 
 if (credentialFilePath) {
@@ -76,7 +77,7 @@ function buildCommandLineOptions(programName: string) {
       '-i, --inputFile <inputFilePath>',
       'required path to the JSONL input file',
     )
-    .requiredOption(
+    .option(
       '-c, --credentialFilePath <credential1sfilePath>',
       'required path to the credentials file',
     )
@@ -111,9 +112,11 @@ function initFirebase(
         databaseURL: databaseUrl,
       });
     } else {
+      const credential = applicationDefault();
       initializeApp({
-        credential: applicationDefault(),
+        credential: credential,
         databaseURL: databaseUrl,
+        projectId: 'default',
       });
     }
   } catch (e) {
